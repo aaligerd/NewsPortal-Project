@@ -13,3 +13,6 @@ mongoose
             console.log("Database Connected\nServer running on port: "+PORT);
         })
     })
+    .catch((err)=>{
+        console.error(err);
+    });
