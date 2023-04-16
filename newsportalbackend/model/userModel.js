@@ -1,26 +1,37 @@
+import Subcription from './subscriptionModel';
 const mongoose= require('mongoose');
 const {Schema}=mongoose;
 
 const userSchema= new Schema({
-    user_name:{
+    name:{
         type: String,
-        required:[true,"User_name needed"]
+        required:[true,"name needed"]
     },
-    user_id:{
+    id:{
         type: String,
-        required:[true,"user_id needed"]
+        required:[true,"id needed"]
     },
-    user_password:{
+    email:{
         type: String,
-        required:[true,"user_password required"]
+        required:[true,"email needed"]
+    },
+    password:{
+        type: String,
+        required:[true,"password required"]
     },
     subscription_type:{
-        type: String,
-        required:[true,"subscription_type required"]
+        type: mongoose.Schema.ObjectId,
+        ref:Subcription,
     },
     joining_date:{
         type:Date,
         default:Date.now
+    },
+    sub_start_date:{
+        type:Date
+    },
+    sub_end_date:{
+        type:Date
     }
 });
 const User =mongoose.model("User",userSchema);
