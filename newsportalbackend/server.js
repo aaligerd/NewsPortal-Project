@@ -11,8 +11,8 @@ mongoose
     .then(()=>{
         const PORT=process.env.PORT|| 3030;
 
-
         //routes
+        //localhost:4040/subscription
         app.use('/subscription',require('./route/subscriptionRoute'));
 
 
