@@ -12,8 +12,11 @@ mongoose
         const PORT=process.env.PORT|| 3030;
 
 
-        //routes
+        //subscription routes
         app.use('/subscription',require('./route/subscriptionRoute'));
+
+        // admin routes
+        app.use('/admin',require('./route/adminRoute'));
 
 
 

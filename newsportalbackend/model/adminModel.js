@@ -2,19 +2,19 @@ const mongoose= require('mongoose');
 const {Schema}=mongoose;
 
 const adminSchema=new Schema({
-    admin_loginid:{
+    loginid:{
         type:String,
         required:[true,"Id needed"]
     },
-    admin_password:{
+    password:{
         type:String,
         required:[true,"Password needed"]
     },
-    admin_mailid:{
+    mailid:{
         type:String,
         required:[true,"Mailid needed"]
     },
-    admin_name:{
+    name:{
         type:String,
             required:[true,"Name needed"]
         
