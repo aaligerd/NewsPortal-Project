@@ -1,7 +1,11 @@
 const Subscription =require('../model/subscriptionModel');
+
+const IP=require('ip');
 const createSubPlan=async(req,res)=>{
     try {
         await Subscription.create(req.body);
+        console.log(first)
+        
         res.status(200).json({msg:"New Plan Created"});
     } catch (error) {
         console.error(error);
