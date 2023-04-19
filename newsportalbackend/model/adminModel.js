@@ -1,25 +1,42 @@
 const mongoose= require('mongoose');
 const {Schema}=mongoose;
+const bcrypt=require('bcryptjs');
 
-const adminSchema=new Schema({
-    admin_loginid:{
+const adminSchema=mongoose.Schema({
+    loginid:{
         type:String,
         required:[true,"Id needed"]
     },
-    admin_password:{
+    password:{
         type:String,
         required:[true,"Password needed"]
     },
-    admin_mailid:{
+    emailid:{
         type:String,
         required:[true,"Mailid needed"]
     },
-    admin_name:{
+    name:{
         type:String,
             required:[true,"Name needed"]
-        
+    },
+    isActive:{
+        type:Boolean,
+        default:true
     }
 
 });
+adminSchema.pre("save",async(next)=>{
+    try {
+         const salt=await bcrypt.genSalt(10);
+        const hashCode=await bcrypt.hash(this.password,salt);
+        console.log(hashCode);
+    next();
+    } catch (error) {
+        console.error(error);
+    }
+   
+})
+
+
 const Admin =mongoose.model("Admin",adminSchema);
 module.exports=Admin;

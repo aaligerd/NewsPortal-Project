@@ -15,6 +15,9 @@ mongoose
         //localhost:4040/subscription
         app.use('/subscription',require('./route/subscriptionRoute'));
 
+           //localhost:4040/admin
+           app.use('/admin',require('./route/adminRoute'));
+
 
 
         app.listen(PORT,()=>{
