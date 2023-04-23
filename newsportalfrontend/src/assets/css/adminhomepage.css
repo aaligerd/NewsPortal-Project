@@ -1,0 +1,23 @@
+.container{
+    width: 100%;
+    display: flex;
+    overflow: hidden;
+}
+.left-panel{
+    width: 12%;
+    min-width: 174px;
+    height: 100vh;
+    background-color: rgb(25, 25, 59);
+    position: fixed;
+    top:0px;
+    left: 0px;
+}
+.right-panel{
+    width: 100%;
+    margin-left:12%;
+    min-height: 800px;
+    overflow-x: hidden;
+}
+.main-body{
+    width: 100%;
+}

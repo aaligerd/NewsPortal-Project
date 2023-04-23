@@ -1,0 +1,62 @@
+.post-snipet-container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 5px;
+    padding: 2px 5px;
+    border: 4px solid rgba(255, 199, 153, 0.324);
+    border-radius: 10px;
+}
+
+.post-details,.post-author,.post-catagory,.post-keyword,.post-options{
+    background-color: rgba(220, 220, 220, 0.226);
+    margin: 5px;
+    padding: 5px 10px;
+    border-radius: 10px 10px 10px 10px;
+}
+
+.post-author,.post-catagory,.post-keyword{
+    width: 10%;
+}
+
+.post-details{
+    width: 40%;
+    
+}
+.post-details p,.post-keyword p,.post-author p{
+    padding: 0;
+    margin: 0;
+    padding: 5px;
+}
+
+.post-title p {
+    font-size: 1.3rem;
+}
+.post-desc p {
+    font-size: 0.8rem;
+}
+
+.post-keyword{
+    color: rgb(27, 27, 27);
+}
+.post-keyword p,.post-author p,.post-catagory p{
+    font-size: 13px;
+}
+
+.post-catagory{
+    margin-right: 15px;
+}
+.post-options{
+    display: flex;
+}
+
+.imageicon{
+    width: 20px;
+    margin: 5px;
+    padding: 5px;
+}
+.imageicon img{
+    width: 100%;
+    cursor: pointer;
+    user-select: none;
+}

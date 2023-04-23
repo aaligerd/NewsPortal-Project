@@ -1,0 +1,30 @@
+.admin-details{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.admin-name{
+    color: white;
+}
+
+.admin-img{
+    width: 50%;
+    
+}
+.admin-img img{
+    width: 100%;
+} 
+.admin-menu{
+    margin-top: 50px;
+    padding-left: 30px;
+    color: aliceblue;
+    text-transform: uppercase;
+}
+.admin-menu p{
+    cursor: pointer;
+    margin-bottom: 30px;
+    transition: 0.5s;
+}
+.admin-menu p:hover{
+    padding-left: 10px;
+}

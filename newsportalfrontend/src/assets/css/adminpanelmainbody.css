@@ -1,0 +1,10 @@
+
+
+.hot-stats{
+    width: 100%;
+    background-image: linear-gradient(to right, #e1e1e1 0%,#f4f4f4 50%, #e1e1e1 100%);
+    display: flex;
+    justify-content: space-evenly;
+}
+
+

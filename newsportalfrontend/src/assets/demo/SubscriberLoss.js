@@ -1,0 +1,32 @@
+export const SubscriberLoss=[
+    {
+        month:"April",
+        day:21,
+        gain:2
+    }, 
+    {
+        month:"April",
+        day:22,
+        gain:6
+    },
+    {
+        month:"April",
+        day:23,
+        gain:4
+    },
+    {
+        month:"April",
+        day:24,
+        gain:3
+    },
+    {
+        month:"April",
+        day:25,
+        gain:10
+    },
+    {
+        month:"April",
+        day:26,
+        gain:4
+    },
+];
