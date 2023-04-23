@@ -11,6 +11,7 @@ const generateToken = (id) => {
 
 const registerAdmin = async (req, res) => {
   try {
+    //object destructure
     const { name, emailid, password, loginid } = req.body;
     if (!name || !emailid || !password || !loginid) {
       res.status(400).json({ msg: "Provide all fields" });
@@ -24,13 +25,17 @@ const registerAdmin = async (req, res) => {
     const newAdmin = await Admin.create(req.body);
     const { id } = newAdmin;
     const authToken = generateToken(id);
+
+
+    //set the authToken in cookies
     res.cookie("authToken", authToken, {
       path: "/",
       httpOnly: true,
-      expires: new Date(Date.now() + 1000 * 86400 * 2), // 2 day
+      expires: new Date(Date.now() + 1000 * 86400 * 5), // 5day
       sameSite: "none",
       secure: false,
     });
+    
     res.json({ msg: "Admin registration successfull" });
   } catch (error) {
     console.error(error);
@@ -75,15 +80,19 @@ const adminLogin = async (req, res) => {
 
 const adminUpdate = async (req, res) => {
   try {
-    const _id = req.params.id;
-    const findAdmin = await Admin.findOne({ _id });
-    if(!findAdmin){res.status(400).json({msg:"Admin not exist"});return;}
-    const updtedAdmin=await Admin.updateOne({_id},req.body);
-    if(!(updtedAdmin.modifiedCount ===1)){res.status(400).json({ msg: "Admin Update unsuccessfull" });}
+    let { name, emailid, password, loginid } = req.body;
+    const {id} = req.params;
+    const findAdmin = await Admin.findById( {_id:id });
+    if(!findAdmin){res.status(400).json({status:0,msg:"Admin not exist"});return;}
+    const salt=await bcrypt.genSalt(10);
+    password=await bcrypt.hash(password,salt);
+    const updtedAdmin=await Admin.findByIdAndUpdate({_id:id},{ name, emailid, password, loginid });
+    console.log("Hello",updtedAdmin);
+    if(!updtedAdmin){res.status(400).json({status:0, msg: "Admin Update unsuccessfull" });}
     res.status(200).json({status:updtedAdmin.modifiedCount,msg:"Admin Update Successfull"});
   } catch (error) {
     console.error(error);
-    res.status(400).json({ msg: "Some error occure while Updating admin" });
+    res.status(400).json({status:0, msg: "Some error occure while Updating admin" });
   }
 };
 

@@ -11,11 +11,11 @@ const blogSchema=new Schema({
         type:String,
         requried:[true,"A short description needed "]
     },
-    news_image:{
+    image:{
         type:String,
         requried:[true,"A image needed to post a news"]
     },
-    news_body:{
+    postbody:{
         type:String,
         requried:[true,"A News body needed"]
     },
@@ -32,6 +32,10 @@ const blogSchema=new Schema({
     date:{
         type:Date,
         default:Date.now
+    },
+    view:{
+        type:Number,
+        default:0
     }
 });
 
