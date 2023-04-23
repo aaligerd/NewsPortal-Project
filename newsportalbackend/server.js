@@ -24,6 +24,9 @@ mongoose
     //localhost:4040/blogpost
     app.use("/blogpost", require("./route/blogPostRoute"));
 
+    // localhost:4040/category
+    app.use("/category",require("./route/categoryRoute"));
+
     app.listen(PORT, () => {
       console.log("Database Connected\nServer running on port: " + PORT);
     });

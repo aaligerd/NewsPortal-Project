@@ -1,5 +1,6 @@
 const mongoose=require('mongoose');
 const {Schema}=mongoose;
+const Category=require('./categorymodel');
 
 //need to pass an object which define the blog
 const blogSchema=new Schema({
@@ -27,7 +28,8 @@ const blogSchema=new Schema({
         type:String
     },
     category:{
-        type:String
+       type: mongoose.Schema.ObjectId,
+       ref: Category
     },
     date:{
         type:Date,
