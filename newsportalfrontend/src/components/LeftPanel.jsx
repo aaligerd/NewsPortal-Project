@@ -16,6 +16,7 @@ function LeftPanel() {
       </div>
       <div className="admin-menu">
         <p
+        className="abcd"
           onClick={() => {
             setTabName("Home");
           }}

@@ -4,7 +4,11 @@ import "../assets/css/NewPost.css";
 function NewPost() {
   const editor = useRef(null);
   const [content, setContent] = useState("");
-
+  const joditConfig={
+    placeholder:'Start typings',
+    height:600,
+    "buttons": "bold,italic,underline,ul,ol,font,fontsize,paragraph,image,cut,copy,paste,hr,table,link,indent,outdent,left,source"
+  };
   return (
     <div className="from-container">
       <div className="post-center-panel">
@@ -18,13 +22,14 @@ function NewPost() {
             <JoditEditor
               ref={editor}
               value={content}
+              // config={joditConfig}
               onChange={(newContent) => setContent(newContent)}
             />
           </div>
         </div>
       </div>
       <div className="post-right-panel">
-        <div className="desc-box">
+        <div className="post-desc-box">
           <label htmlFor="desc-input-box">Post description</label>
           <input type="text" id="desc-input-box" />
         </div>

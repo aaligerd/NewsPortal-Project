@@ -24,7 +24,13 @@
     cursor: pointer;
     margin-bottom: 30px;
     transition: 0.5s;
+    font-size: 20px;
+
+}
+.active-tab{
+    font-weight: bold;
 }
 .admin-menu p:hover{
-    padding-left: 10px;
+    padding-left: 20px;
+    
 }
