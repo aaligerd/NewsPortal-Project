@@ -4,9 +4,9 @@ const dotenv = require("dotenv").config();
 const bcrypt = require("bcryptjs");
 
 const generateToken = (id) => {
-  return jwt.sign({ id }, process.env.MY_SECRET_KEY, {
-    expiresIn: "1h",
-  });
+  const jwtSignOption={expiresIn: "1h"};
+  return jwt.sign({ id }, process.env.MY_SECRET_KEY, jwtSignOption);
+  
 };
 
 const registerAdmin = async (req, res) => {
@@ -31,7 +31,7 @@ const registerAdmin = async (req, res) => {
     res.cookie("authToken", authToken, {
       path: "/",
       httpOnly: true,
-      expires: new Date(Date.now() + 1000 * 86400 * 5), // 5day
+      expires: new Date(Date.now() + 1000 * 86400 * 1), // half day
       sameSite: "none",
       secure: false,
     });
@@ -45,29 +45,38 @@ const registerAdmin = async (req, res) => {
 
 const adminLogin = async (req, res) => {
   try {
+    //destructure body
     const { password, loginid } = req.body;
+
+    //checking fields validation
     if (!password || !loginid) {
       res.status(400).json({ msg: "Provide all fields" });
       return;
     }
+
+    //checking registerd admin or not
     const existAdmin = await Admin.findOne({ loginid });
     if (!existAdmin) {
       res
         .status(400)
         .json({ msg: "You are not registered,Please Register yourself" });
-      return;
+        return;
     }
+
+    //checking password
     const passChek = await bcrypt.compare(password, existAdmin.password);
     if (!passChek) {
       res.status(400).json({ msg: "Invalid loginid or Password" });
       return;
     }
     const { id } = existAdmin;
+
+    //generating webtoken for validation
     const authToken = generateToken(id);
-    res.cookie("authToken", authToken, {
+    res.cookie("adminLoginAuthToken", authToken, {
       path: "/",
       httpOnly: true,
-      expires: new Date(Date.now() + 1000 * 28800), // 2 day
+      expires: new Date(Date.now()+ 1000 * 86400 * 1 ), // 1 day
       sameSite: "none",
       secure: false,
     });
@@ -77,6 +86,8 @@ const adminLogin = async (req, res) => {
     res.status(400).json({ msg: "Some error occure while login admin" });
   }
 };
+
+
 
 const adminUpdate = async (req, res) => {
   try {
