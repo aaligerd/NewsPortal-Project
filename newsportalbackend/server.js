@@ -8,6 +8,7 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(cors("*"));
 
+
 //connect database first the start the server
 mongoose
   .connect(process.env.MONGO_URI)
@@ -26,6 +27,9 @@ mongoose
 
     // localhost:4040/category
     app.use("/category",require("./route/categoryRoute"));
+
+    // localhost:4040/user
+    app.use("/user",require("./route/userRoute"));
 
     app.listen(PORT, () => {
       console.log("Database Connected\nServer running on port: " + PORT);

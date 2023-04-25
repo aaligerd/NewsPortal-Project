@@ -17,7 +17,7 @@ function AdminHome() {
       data:Data.map((ele)=>ele.view),
       backgroundColor:[" #d35400 "," #e67e22","#3498db"],
       borderColor:["#ec7063"],
-      tension: 0.4
+      tension: 0.3
     }]
   });
   const [deviceData, setDeviceData] = useState({

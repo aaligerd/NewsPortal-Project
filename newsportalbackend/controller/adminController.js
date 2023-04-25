@@ -4,7 +4,7 @@ const dotenv = require("dotenv").config();
 const bcrypt = require("bcryptjs");
 
 const generateToken = (id) => {
-  const jwtSignOption={expiresIn: "1h"};
+  const jwtSignOption={expiresIn: "1d"};
   return jwt.sign({ id }, process.env.MY_SECRET_KEY, jwtSignOption);
   
 };
@@ -28,10 +28,10 @@ const registerAdmin = async (req, res) => {
 
 
     //set the authToken in cookies
-    res.cookie("authToken", authToken, {
+    res.cookie("adminLoginAuthToken", authToken, {
       path: "/",
       httpOnly: true,
-      expires: new Date(Date.now() + 1000 * 86400 * 1), // half day
+      // expires: new Date(Date.now() + 1000 * 86400 * 1), // 1 day
       sameSite: "none",
       secure: false,
     });
@@ -76,7 +76,7 @@ const adminLogin = async (req, res) => {
     res.cookie("adminLoginAuthToken", authToken, {
       path: "/",
       httpOnly: true,
-      expires: new Date(Date.now()+ 1000 * 86400 * 1 ), // 1 day
+      // expires: new Date(Date.now()+ 1000 * 86400 * 1 ), // 1 day
       sameSite: "none",
       secure: false,
     });
@@ -85,6 +85,11 @@ const adminLogin = async (req, res) => {
     console.error(error);
     res.status(400).json({ msg: "Some error occure while login admin" });
   }
+};
+
+const adminLogout = async(req,res)=>{
+  res.clearCookies("adminLoginAuthToken");
+  res.status(200).json({msg:"Logged out successfully"});
 };
 
 
@@ -108,7 +113,7 @@ const adminUpdate = async (req, res) => {
 };
 
 const clearAllCookies = (req, res) => {
-  res.clearCookie("authToken");
+  res.clearCookie("adminLoginAuthToken");
   res.clearCookie("token");
   res.send("Cookie clear");
 };
