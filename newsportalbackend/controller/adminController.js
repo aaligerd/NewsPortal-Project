@@ -92,20 +92,26 @@ const adminLogout = async(req,res)=>{
   res.status(200).json({msg:"Logged out successfully"});
 };
 
-
-
 const adminUpdate = async (req, res) => {
   try {
+    //destructure request body
     let { name, emailid, password, loginid } = req.body;
     const {id} = req.params;
+
+    //find admin by id
     const findAdmin = await Admin.findById( {_id:id });
+    //check admin extist or not
     if(!findAdmin){res.status(400).json({status:0,msg:"Admin not exist"});return;}
+
+    //hash the new password
     const salt=await bcrypt.genSalt(10);
     password=await bcrypt.hash(password,salt);
+
+    //update the admin details
     const updtedAdmin=await Admin.findByIdAndUpdate({_id:id},{ name, emailid, password, loginid });
-    console.log("Hello",updtedAdmin);
-    if(!updtedAdmin){res.status(400).json({status:0, msg: "Admin Update unsuccessfull" });}
-    res.status(200).json({status:updtedAdmin.modifiedCount,msg:"Admin Update Successfull"});
+    
+    if(!updtedAdmin){res.status(400).json({status:0, msg: "Admin Update unsuccessfull" });return;}
+    res.status(200).json({status:1,msg:"Admin Update Successfull"});
   } catch (error) {
     console.error(error);
     res.status(400).json({status:0, msg: "Some error occure while Updating admin" });
@@ -114,8 +120,9 @@ const adminUpdate = async (req, res) => {
 
 const clearAllCookies = (req, res) => {
   res.clearCookie("adminLoginAuthToken");
-  res.clearCookie("token");
+  res.clearCookie('pageVisits');
+  res.clearCookie("authToken");
   res.send("Cookie clear");
 };
 
-module.exports = { registerAdmin, adminLogin, adminUpdate, clearAllCookies };
+module.exports = { registerAdmin, adminLogin, adminUpdate, clearAllCookies,adminLogout};
