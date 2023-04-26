@@ -6,10 +6,10 @@ const {registerAdmin,adminLogin,adminUpdate,clearAllCookies, adminLogout,}=requi
 route.post('/register',registerAdmin);
 
 //admin login
-route.get('/login',adminLogin);
+route.post('/login',adminLogin);
 
 //admin logout
-route.get('/login',adminLogout);
+route.get('/logout',adminLogout);
 
 //admin update
 route.put('/update/:id',adminUpdate);

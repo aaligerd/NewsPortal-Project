@@ -50,9 +50,10 @@ const adminLogin = async (req, res) => {
 
     //checking fields validation
     if (!password || !loginid) {
-      res.status(400).json({ msg: "Provide all fields" });
+      res.status(400).json({ status:0,msg: "Provide all fields" });
       return;
     }
+    
 
     //checking registerd admin or not
     const existAdmin = await Admin.findOne({ loginid });
@@ -73,14 +74,11 @@ const adminLogin = async (req, res) => {
 
     //generating webtoken for validation
     const authToken = generateToken(id);
-    res.cookie("adminLoginAuthToken", authToken, {
-      path: "/",
+   res.cookie("adminLoginAuthToken", authToken, {
       httpOnly: true,
-      // expires: new Date(Date.now()+ 1000 * 86400 * 1 ), // 1 day
-      sameSite: "none",
-      secure: false,
+      expires: new Date(Date.now()+ 1000 * 86400 * 5 ), // 1 day
     });
-    res.status(200).json({ msg: "Admin Login successfull" });
+    res.status(200).json({status:1, msg: "Admin Login successfull",existAdmin });
   } catch (error) {
     console.error(error);
     res.status(400).json({ msg: "Some error occure while login admin" });
@@ -88,8 +86,8 @@ const adminLogin = async (req, res) => {
 };
 
 const adminLogout = async(req,res)=>{
-  res.clearCookies("adminLoginAuthToken");
-  res.status(200).json({msg:"Logged out successfully"});
+  res.clearCookie("adminLoginAuthToken");
+  res.status(200).json({status:1,msg:"Logged out successfully"});
 };
 
 const adminUpdate = async (req, res) => {

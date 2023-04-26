@@ -1,14 +1,32 @@
-import React, { useState, useContext } from "react";
+import React, {useContext } from "react";
 import "../assets/css/leftpanel.css";
 import { AdminContext } from "../context/adminContext";
+import { AppContext } from '../context/appContext';
 
 function LeftPanel() {
-  const { name, setTabName } = useContext(AdminContext);
+  const { adminData,setAdminData, setTabName } = useContext(AdminContext);
+  const  {setLoggedIn}=useContext(AppContext);
+
+  //logout method
+  const adminLogout=()=>{
+      fetch('http://localhost:4040/admin/logout')
+      .then((res)=>res.json())
+      .then((res)=>{
+        if(res.status===1){
+          setAdminData();
+          setLoggedIn(false);
+        }
+      })
+      .catch((err)=>{console.log(err)})
+  }
+
+
+
   return (
     <div className="left-panel-container">
       <div className="admin-details">
         <div className="admin-name">
-          <p>{"Hi " + name}</p>
+          <p>{"Hi " + adminData.name}</p>
         </div>
         <div className="admin-img">
           <img src={require("../assets/images/avatar.png")} alt="" srcset="" />
@@ -37,7 +55,7 @@ function LeftPanel() {
         >
           New Post
         </p>
-        <p>Logout</p>
+        <p onClick={adminLogout}>Logout</p>
       </div>
     </div>
   );
