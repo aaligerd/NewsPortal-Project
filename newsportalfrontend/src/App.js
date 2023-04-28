@@ -1,13 +1,13 @@
 import './App.css';
-import React,{useContext,useState} from "react";
-import AdminLoginPage from './Pages/AdminLoginPage';
+import React,{useContext} from "react";
 import Adminhomepage from './Pages/Adminhomepage';
-import { AppContext, AppPovider } from './context/appContext';
+import { AppContext} from './context/appContext';
+import AuthState from './State/AuthState';
 function App() {
-  const  {isLoggedIn,setLoggedIn}=useContext(AppContext);
+  const  {isLoggedIn}=useContext(AppContext);
   return (
     <>
-      {isLoggedIn?<Adminhomepage/> : <AdminLoginPage/>}
+      {isLoggedIn?<Adminhomepage/> : <AuthState/>}
     </>
   );
 }

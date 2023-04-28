@@ -1,9 +1,15 @@
-import React from 'react'
 import AdminHomepage from "../Pages/Adminhomepage";
+import {BrowserRouter,Routes,Route} from 'react-router-dom'
+import EditNews from "../Pages/EditNews";
 
 function AppState() {
   return (
-    <AdminHomepage/>
+    <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<AdminHomepage/>} />
+          <Route path="/editnews" element={<EditNews/>} />
+        </Routes>
+    </BrowserRouter>
   )
 }
 

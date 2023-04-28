@@ -1,8 +1,27 @@
-import React from "react";
+import React,{useState,useEffect, useContext} from "react";
 import "../assets/css/postsnipets.css";
+import { AppContext } from "../context/appContext";
+// import {useNavigate} from 'react-router-dom';
+
 
 function PostSnipets(props) {
-  const { title, category, desc, keywords, author} = props;
+  const { title, categoryId, desc, keywords, author} = props;
+  const [categoryName, setCategoryName] = useState("");
+  const {getEditableNewsId}=useContext(AppContext);
+  // const navigate=useNavigate();
+  const editNews=()=>{
+    getEditableNewsId(categoryId);
+    // navigate('/editnews');
+  }
+  
+  useEffect(()=>{
+    fetch('http://localhost:4040/category/get/'+categoryId,{method:"POST"})
+    .then((res)=>res.json())
+    .then((res)=>setCategoryName(res.category.name))
+    .catch((err)=>{console.log(err)})
+
+    console.log("hiiiiii",categoryName)
+  },[]);
   return (
     <div className="post-snipet-container">
       <div className="post-details">
@@ -23,12 +42,12 @@ function PostSnipets(props) {
       </div>
       <div className="post-catagory">
         <p>Category</p>
-        <p>{category}</p>
+        <p>{categoryName}</p>
       </div>
       <div className="post-options">
         <div className="btn-row1">
           <div className="imageicon">
-            <img src={require("../assets/images/edit.png")} alt="edit icon" />
+            <img src={require("../assets/images/edit.png")} alt="edit icon" onClick={editNews}/>
           </div>
           <div className="imageicon">
             <img src={require("../assets/images/share.png")} alt="edit icon" />

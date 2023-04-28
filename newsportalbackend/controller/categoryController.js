@@ -10,6 +10,14 @@ const getCategory=async(req,res)=>{
     
 }
 
+//get category by id
+const getCategoryById=async(req,res)=>{
+    const _id=req.params.id;
+    const category=await Category.findById(_id);
+    if(!category){res.status(400).json({status:0,msg:"No data found"}); return};
+    res.status(200).json({status:1,msg:"Data found",category});
+}
+
 // Save category data
 
 const saveCategory=async(req,res)=>{
@@ -27,4 +35,4 @@ const saveCategory=async(req,res)=>{
     
 }
 
-module.exports={getCategory,saveCategory};
+module.exports={getCategory,saveCategory,getCategoryById};
