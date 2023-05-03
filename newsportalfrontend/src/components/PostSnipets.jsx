@@ -1,17 +1,17 @@
 import React,{useState,useEffect, useContext} from "react";
 import "../assets/css/postsnipets.css";
 import { AppContext } from "../context/appContext";
-// import {useNavigate} from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
 
 
 function PostSnipets(props) {
   const { title, categoryId, desc, keywords, author} = props;
   const [categoryName, setCategoryName] = useState("");
   const {getEditableNewsId}=useContext(AppContext);
-  // const navigate=useNavigate();
+  const navigate=useNavigate();
   const editNews=()=>{
     getEditableNewsId(categoryId);
-    // navigate('/editnews');
+    navigate('/editnews');
   }
   
   useEffect(()=>{
