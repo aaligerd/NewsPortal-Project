@@ -1,7 +1,5 @@
 import React, { useEffect,useState } from "react";
 import PostSnipets from "./PostSnipets";
-import {PostData} from '../assets/demo/PostData';
-
 function Post() {
   const [data, setData] = useState(null);
   var requestOptions = {
@@ -17,6 +15,7 @@ function Post() {
     <div className="post-section">
       {data && data.allPost.map((ele)=>{
         return (<PostSnipets 
+          post_id={ele._id}
         title={ele.title.substring(0,50)+"......"}
         desc={ele.description}
         keywords={ele.keywords}

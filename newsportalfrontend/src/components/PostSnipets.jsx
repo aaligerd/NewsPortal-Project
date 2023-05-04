@@ -1,26 +1,29 @@
 import React,{useState,useEffect, useContext} from "react";
 import "../assets/css/postsnipets.css";
 import { AppContext } from "../context/appContext";
+import {AdminContext} from "../context/adminContext";
 import {useNavigate} from 'react-router-dom';
 
 
 function PostSnipets(props) {
-  const { title, categoryId, desc, keywords, author} = props;
+  const { title, categoryId, desc, keywords, author,post_id} = props;
   const [categoryName, setCategoryName] = useState("");
   const {getEditableNewsId}=useContext(AppContext);
+  const {setTabName}=useContext(AdminContext);
   const navigate=useNavigate();
+
+  //setting the active news edit post id in a app context to fetch it from editpost.jsx
   const editNews=()=>{
-    getEditableNewsId(categoryId);
-    navigate('/editnews');
+    getEditableNewsId(post_id);
+    setTabName("EditPost");
   }
   
+  //fetch the category of that post coming from porps
   useEffect(()=>{
     fetch('http://localhost:4040/category/get/'+categoryId,{method:"POST"})
     .then((res)=>res.json())
     .then((res)=>setCategoryName(res.category.name))
     .catch((err)=>{console.log(err)})
-
-    console.log("hiiiiii",categoryName)
   },[]);
   return (
     <div className="post-snipet-container">

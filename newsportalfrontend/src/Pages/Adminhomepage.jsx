@@ -5,6 +5,7 @@ import Post from "../components/Post";
 import NewPost from "../components/NewPost";
 import AdminHome from "../components/AdminHome";
 import { AdminContext } from "../context/adminContext";
+import EditNews from "./EditNews";
 
 const Adminhomepage = () => {
   
@@ -20,6 +21,7 @@ const Adminhomepage = () => {
             {tabName === "Home" && <AdminHome />}
             {tabName === "Posts" && <Post />}
             {tabName === "NewPost" && <NewPost />}
+            {tabName === "EditPost" && <EditNews />}
           </div>
         </div>
       </div>

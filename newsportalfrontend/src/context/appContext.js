@@ -7,7 +7,7 @@ export const AppPovider = ({ children }) => {
     setEditableNewsId(newsId);
   }
   return (
-    <AppContext.Provider value={{ isLoggedIn, setLoggedIn,getEditableNewsId }}>
+    <AppContext.Provider value={{ isLoggedIn, setLoggedIn,getEditableNewsId,setEditableNewsId,editableNewsId}}>
       {children}
     </AppContext.Provider>
   );
