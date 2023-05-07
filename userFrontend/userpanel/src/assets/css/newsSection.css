@@ -1,0 +1,14 @@
+.news-section{
+    width: 60%;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+}
+.latest-news-panel,.social-media-panel{
+    width: 20%;
+    background-color: rgb(246, 246, 246);
+}
+.main-news-panel{
+    width: 60%;
+    background-color: beige;
+}

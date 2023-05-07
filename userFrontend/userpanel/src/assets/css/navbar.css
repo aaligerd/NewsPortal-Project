@@ -7,6 +7,8 @@
     display: flex;
     justify-content: space-between;
     padding: 0px 50px;
+    width: 60%;
+    margin: auto;
 }
 
 #hamburger {
@@ -16,7 +18,7 @@
 .header-left-ul {
     padding: 0;
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-between;
     list-style: none;
     color: white;
     font-size: 15px;
@@ -35,7 +37,7 @@
 }
 
 .date-weather {
-    padding-left: 50px;
+    /* padding-left: 50px; */
 }
 
 .date-weather img {
@@ -67,12 +69,10 @@
 
 .header-mid {
     align-self: center;
-    font-size: 50px;
+    font-size: 45px;
     font-family: 'Secular One', sans-serif;
 }
-.header-right{
-    padding-right:50px ;
-}
+
 .header-right-menu {
     margin-top: 10px;
     list-style: none;

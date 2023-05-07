@@ -3,7 +3,12 @@ import "../assets/css/navbar.css";
 import weathear from "../assets/images/cloudy-day.png";
 import search from "../assets/images/search.png";
 import user from "../assets/images/user.png";
+import { months_name } from '../assets/months';
 function Navbar() {
+  const today = new Date();
+const yyyy = today.getFullYear();
+let mm = today.getMonth(); // Months start at 0!
+let dd = today.getDate();
   return (
     <nav className="bigger-header container-fluid">
       <div className="smller-header container">
@@ -26,7 +31,7 @@ function Navbar() {
             </ul>
           
           <div className="date-weather">
-            Friday, May 23, 2026 | Kolkata 30<sup>o</sup>C
+            {dd+" "+months_name[mm]+" , "+yyyy} | Kolkata 30<sup>o</sup>C
             <img src={weathear} alt="weathear" />
           </div>
         </div>

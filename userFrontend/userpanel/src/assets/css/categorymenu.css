@@ -1,0 +1,17 @@
+.menu-wraper{
+    width: 60%;
+    margin: auto;
+    background-color: rgb(241, 241, 241);
+    display: flex;
+    justify-content: space-evenly;
+    font-size: 16px;
+    font-family: 'Konkhmer Sleokchher', cursive;
+    text-transform: capitalize;
+}
+.menu-wraper p{
+    color: rgb(50, 50, 50);
+}
+.menu-wraper p:hover{
+    cursor: pointer;
+    color: rgb(35, 175, 230);
+}
