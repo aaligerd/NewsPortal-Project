@@ -6,6 +6,8 @@ function LatestNewsPanel() {
     "Skipping meals and taking prescribed diet pills linked to minimal weight loss: Study",
     "Wrestlers' protest: WFI chief Brij Bhushan's video statement as farmers gather at Jantar Mantar",
     "Hina Khan’s black ruched dress is the perfect weekend fashion inspo",
+    "Taapsee Pannu wears saree for stroll around New York during vacation with boyfriend, sister",
+    "Taapsee Pannu wears saree for stroll around New York during vacation with boyfriend, sister",
     "Taapsee Pannu wears saree for stroll around New York during vacation with boyfriend, sister"
   ];
   return (

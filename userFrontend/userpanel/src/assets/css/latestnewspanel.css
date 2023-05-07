@@ -1,19 +1,25 @@
-.news-snipets{
+.news-snipets {
     padding: 20px 20px;
 }
-.latest-news{
+
+.latest-news {
     padding-top: 1px;
     margin: 5px;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    position: sticky;
+    width: 217px;
+    top: 100px;
+    z-index: 0;
 }
+
 .topic p {
     text-align: center;
     font-size: 20px;
 }
-.topic span{
+
+.topic span {
     margin: 0px 5px;
     color: rgb(35, 175, 230);
     font-size: 20px;
     font-weight: bold;
 }
- 

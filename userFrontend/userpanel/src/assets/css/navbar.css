@@ -1,6 +1,12 @@
 .bigger-header {
     background-color: #011e29;
     color: white;
+    position: fixed;
+    z-index: 2;
+}
+.container-fluid{
+    
+    width: 100%;
 }
 
 .smller-header {

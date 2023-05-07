@@ -6,9 +6,12 @@
 }
 .latest-news-panel,.social-media-panel{
     width: 20%;
-    background-color: rgb(246, 246, 246);
+    background-color: rgb(255, 255, 255);
 }
 .main-news-panel{
-    width: 60%;
-    background-color: beige;
+    margin-top: 2px;
+    padding:0px 10px;
+    width: 57%;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    background-color: rgb(246, 246, 246);
 }

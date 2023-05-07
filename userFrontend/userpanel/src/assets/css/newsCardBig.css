@@ -1,0 +1,17 @@
+.news-card{
+    width: 90%;
+    margin: auto;
+    padding: 5px 10px;
+    /* border: 1px solid black; */
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+.news-card p:first-child{
+    font-size: 25px;
+font-weight: bold;
+}
+.news-img{
+    width: 100%;
+}
+.news-img img{
+    width: 100%;
+}
