@@ -1,6 +1,6 @@
 const express=require('express');
 const route=express.Router();
-const {addBlogPost,getBlogPost,getBlogPostById,getBlogPostByCategory,getUserBlogPostById} =require('../controller/blogController');
+const {addBlogPost,getBlogPost,getBlogPostById,getBlogPostByCategory,getUserBlogPostById,updateBlogPost} =require('../controller/blogController');
 
 //get all blogpost data
 route.get('/',getBlogPost);
@@ -16,6 +16,9 @@ route.get('/getpost/category/:category',getBlogPostByCategory);
 
 //save blogpost data
 route.post('/savepost',addBlogPost);
+
+//update a blogpost by id
+route.post('/update/:id',updateBlogPost);
 
 
 

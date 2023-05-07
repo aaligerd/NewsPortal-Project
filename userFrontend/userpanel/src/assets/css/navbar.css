@@ -1,0 +1,110 @@
+.bigger-header {
+    background-color: #011e29;
+    color: white;
+}
+
+.smller-header {
+    display: flex;
+    justify-content: space-between;
+    padding: 0px 50px;
+}
+
+#hamburger {
+    margin-right: 10px;
+}
+
+.header-left-ul {
+    padding: 0;
+    display: flex;
+    justify-content: space-evenly;
+    list-style: none;
+    color: white;
+    font-size: 15px;
+}
+
+.header-left-ul li {
+    display: flex;
+}
+
+.header-left-ul li img {
+    margin-right: 10px;
+}
+
+.header-left-ul img {
+    width: 20px;
+}
+
+.date-weather {
+    padding-left: 50px;
+}
+
+.date-weather img {
+    width: 25px;
+}
+
+.hamurger {
+    margin: 5px;
+}
+
+#one,
+#two,
+#three {
+    background-color: white;
+    width: 20px;
+    height: 2px;
+    margin-bottom: 4px;
+}
+
+#two {
+    width: 15px;
+}
+
+.header-left-ul li:first-child {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.header-mid {
+    align-self: center;
+    font-size: 50px;
+    font-family: 'Secular One', sans-serif;
+}
+.header-right{
+    padding-right:50px ;
+}
+.header-right-menu {
+    margin-top: 10px;
+    list-style: none;
+    display: flex;
+    justify-content: end;
+
+}
+
+.header-right-menu li:first-child {
+    margin-right: 10px;
+}
+
+.header-right-menu li img {
+    width: 10px;
+    color: wheat;
+}
+
+.subs-part {
+    display: flex;
+
+    align-items: center;
+}
+
+.sub-text {
+    margin-right: 20px;
+}
+
+.sub-btn button {
+    padding: 5px;
+    border: none;
+    text-transform: uppercase;
+    border-radius: 5px;
+    font-size: 13px;
+    font-weight: bold;
+}

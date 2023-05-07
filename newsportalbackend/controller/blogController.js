@@ -133,10 +133,20 @@ const getBlogPostByCategory = async (req, res) => {
   }
 };
 
+
+//update blogpost by id
+const updateBlogPost=async(req,res)=>{
+  const _id=req.params.id;
+  const findPost=await Blog.findById({_id});
+  if(!findPost){res.status(400).json({status:0,msg:"No post found"});return}
+  await Blog.findByIdAndUpdate({_id},req.body);
+  res.status(200).json({status:1,msg:"Post Updated"});
+}
 module.exports = {
   addBlogPost,
   getBlogPost,
   getBlogPostById,
   getBlogPostByCategory,
   getUserBlogPostById,
+  updateBlogPost
 };

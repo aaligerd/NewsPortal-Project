@@ -1,14 +1,18 @@
-import React,{useState,useRef, useEffect} from 'react';
+import React,{useState,useRef, useEffect,useContext} from 'react';
 import JoditEditor from "jodit-react";
 import "../assets/css/NewPost.css";
+import { AdminContext } from '../context/adminContext';
 
 function NewsEditFields(props) {
   const {id,title,description,image,postbody,author,keywords,category}=props
   const [updatedPost, setUpdatedPost] = useState({id,title,description,image,postbody,author,keywords,category});
   const [categoryNames, setCategoryNames] = useState(null);
   const [selectCategory, setSelectCategory] = useState({name:"Select Category"});
+  const [errormsg, setErrormsg] = useState("");
 
   const editor = useRef(null);
+
+  const {setTabName}=useContext(AdminContext)
 
   useEffect(()=>{
     //fetching all category list
@@ -18,14 +22,27 @@ function NewsEditFields(props) {
     .catch((err) => console.error(err));
   },[]);
 
+  //setting request options
+  const header=new Headers();
+  header.append("Content-Type", "application/json");
+    const reqOption = {
+      method: "POST",
+      headers: header,
+      body: JSON.stringify(updatedPost),
+    };
   const updatePost=()=>{
-    console.log(updatedPost)
+    fetch("http://localhost:4040/blogpost/update/"+id,reqOption)
+    .then((res) => res.json())
+    .then((res) => {setErrormsg(res.msg);setTimeout(() => {
+      setTabName("Posts");
+    }, 5000);})
+    .catch((err) => console.error(err));
   }
   return (
     <div className="from-container">=
     <div className="post-center-panel">
     <div className="error-msg">
-        <p style={{color:"red",textAlign:"center"}}>{}</p>
+        <p style={{color:"red",textAlign:"center"}}>{errormsg}</p>
       </div>
       <div className="title-box">
         <label htmlFor="title-input-box">Post title</label>
