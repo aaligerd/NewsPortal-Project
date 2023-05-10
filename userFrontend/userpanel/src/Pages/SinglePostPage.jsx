@@ -5,8 +5,7 @@ import Singlepostview from '../components/Singlepostview';
 
 
 function SinglePostPage() {
-    const{visibleNewsId}=useContext(AppContext);
-    const [blog, setBlog] = useState({})
+    const{visibleNewsId,setBlog}=useContext(AppContext);
     const [isLoading, setIsLoading] = useState(false)
 
 
@@ -14,7 +13,7 @@ function SinglePostPage() {
         setIsLoading(true);
         fetch("http://localhost:4040/blogpost/getpost/user/"+visibleNewsId)
         .then((res)=>res.json())
-        .then((res)=>{setBlog(res);setIsLoading(false)})
+        .then((res)=>{setBlog(res);setIsLoading(false);console.log(res)})
         .catch((err)=>{console.error(err)});
     },[]);
   return (

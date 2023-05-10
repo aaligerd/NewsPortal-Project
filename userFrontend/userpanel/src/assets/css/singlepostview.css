@@ -1,0 +1,35 @@
+.post-section{
+    width: 50%;
+    margin: auto;
+    margin-top: 10px;
+    box-shadow: rgba(68, 210, 242, 0.2) 0px 12px 28px 0px, rgba(0, 0, 0, 0.1) 0px 2px 4px 0px, rgba(255, 255, 255, 0.05) 0px 0px 0px 1px inset;
+}
+.post-section{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.post-img-container{
+    width: 60%;
+}
+
+.post-title{
+    font-size: 30px;
+    font-weight: bold;
+    padding: 5px 10%;
+}
+.post-title p:hover{
+    text-decoration: underline;
+}
+
+.post-desc{
+    width: 60%;
+    font-size: 17px;
+    font-style: italic;
+    color: rgb(93, 93, 93);
+}
+
+.post-body{
+    width: 60%;
+    font-size: 20px;
+}

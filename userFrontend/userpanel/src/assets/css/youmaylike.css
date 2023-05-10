@@ -1,0 +1,9 @@
+.like-container{
+    width: 80%;
+    margin: 20px  auto;
+}
+
+.like-post-container{
+    display: flex;
+
+}

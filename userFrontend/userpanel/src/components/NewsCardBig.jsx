@@ -1,10 +1,18 @@
-import React,{useEffect,useState} from "react";
+import React,{useEffect,useState,useContext} from "react";
 import '../assets/css/newsCardBig.css';
 import {months_name} from "../assets/months.js"
-function NewsCardBig({title,desc,date,image,categoryid}) {
+import { AppContext } from "../context/AppContext";
+import { useNavigate } from "react-router-dom";
+function NewsCardBig({title,desc,date,image,categoryid,id}) {
+
+  const{setVisibleNewsId}=useContext(AppContext);
+  const navigate=useNavigate();
+
+
   const d=new Date(date);
   date=d.getDate()+" "+months_name[d.getMonth()] +" ,"+d.getFullYear();
-  const [category, setCategory] = useState("")
+  const [category, setCategory] = useState("");
+  const paraOnclick=()=>{setVisibleNewsId(id);navigate("/post")}
   useEffect(()=>{
     fetch("http://localhost:4040/category/get/"+categoryid)
     .then((res)=>res.json())
@@ -14,7 +22,7 @@ function NewsCardBig({title,desc,date,image,categoryid}) {
 
   return (
     <div className="news-card">
-      <p>
+      <p onClick={paraOnclick} className="big-post-title">
         {title}
       </p>
       <p style={{textTransform:"capitalize"}}>{category} -{date}</p>

@@ -12,7 +12,7 @@ route.get('/getpost/:id',getBlogPostById);
 route.get('/getpost/user/:id',getUserBlogPostById);
 
 //get post data by id
-route.get('/getpost/category/:category',getBlogPostByCategory);
+route.get('/getpost/category/:categoryid',getBlogPostByCategory);
 
 //save blogpost data
 route.post('/savepost',addBlogPost);
