@@ -22,7 +22,7 @@ const addBlogPost = async (req, res) => {
 
 //get all data from blog
 const getBlogPost = async (req, res) => {
-  const allPost = await Blog.find();
+  const allPost = await Blog.find().sort({date:-1});
   res.status(200).json({ status: 1, allPost });
 };
 

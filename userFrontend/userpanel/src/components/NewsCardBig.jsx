@@ -1,16 +1,27 @@
-import React from "react";
+import React,{useEffect,useState} from "react";
 import '../assets/css/newsCardBig.css';
-function NewsCardBig() {
+import {months_name} from "../assets/months.js"
+function NewsCardBig({title,desc,date,image,categoryid}) {
+  const d=new Date(date);
+  date=d.getDate()+" "+months_name[d.getMonth()] +" ,"+d.getFullYear();
+  const [category, setCategory] = useState("")
+  useEffect(()=>{
+    fetch("http://localhost:4040/category/get/"+categoryid)
+    .then((res)=>res.json())
+    .then((res)=>setCategory(res.category.name))
+    .catch((err)=>{console.error(err)});
+  },[]);
+
   return (
     <div className="news-card">
       <p>
-        IPL 2023: Glenn Phillips, Abdul Samad pull off stunning upset for Sunrisers
+        {title}
       </p>
-      <p>Cricket - 8 May,2023</p>
+      <p style={{textTransform:"capitalize"}}>{category} -{date}</p>
       <div className="news-img">
         <img
-          src="https://www.hindustantimes.com/ht-img/img/2023/05/07/550x309/India-IPL-Cricket-122_1683482839350_1683482861266.jpg"
-          alt="srh vs rr"
+          src={image}
+          alt="news captured"
         />
       </div>
     </div>

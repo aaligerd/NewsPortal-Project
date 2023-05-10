@@ -1,9 +1,18 @@
-import React from 'react'
+import React from "react";
 
+import "../assets/css/socialpanel.css";
+import SocialIcons from "./SocialIcons";
 function SocialPanel() {
   return (
-    <div>SocialPanel</div>
-  )
+    <div>
+      <div className="main-topic">
+        <span>[</span>
+        <p>SOCIAL</p>
+        <span>]</span>
+      </div>
+      <SocialIcons/>
+    </div>
+  );
 }
 
-export default SocialPanel
+export default SocialPanel;

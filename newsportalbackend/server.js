@@ -5,16 +5,18 @@ const cookieParser = require("cookie-parser");
 const cors=require('cors');
 
 
-
+//create an express application
 const app = express();
+
+
 app.use(express.json());
 app.use(cookieParser());
 app.use(cors("*"));
 
 
-//connect database first the start the server
-mongoose
-  .connect(process.env.MONGO_URI)
+//connect database first then start the server
+mongoose  
+  .connect(process.env.MONGO_URI)  
   .then(() => {
     const PORT = process.env.PORT || 3030;
 

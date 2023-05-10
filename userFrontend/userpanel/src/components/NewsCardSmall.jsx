@@ -1,20 +1,38 @@
-import React from "react";
+import React,{useEffect,useState,useContext} from "react";
 import "../assets/css/newscardsmall.css";
+import {months_name} from "../assets/months.js";
+import { AppContext } from "../context/AppContext";
+import { useNavigate } from "react-router-dom";
 
-export default function NewsCardSmall() {
+export default function NewsCardSmall({title,date,image,categoryid,id}) {
+  const{setVisibleNewsId}=useContext(AppContext);
+  const navigate=useNavigate();
+
+  const paraOnclick=()=>{setVisibleNewsId(id);navigate("/post")}
+
+
+  
+  const d=new Date(date);
+  date=d.getDate()+" "+months_name[d.getMonth()] +" ,"+d.getFullYear();
+  const [category, setCategory] = useState("")
+  useEffect(()=>{
+    fetch("http://localhost:4040/category/get/"+categoryid)
+    .then((res)=>res.json())
+    .then((res)=>setCategory(res.category.name))
+    .catch((err)=>{console.error(err)});
+  },[]);
   return (
     <div className="news-small-card">
       <div className="small-news-desc">
-        <p>
-          IPL 2023: Glenn Phillips, Abdul Samad pull off stunning upset for
-          Sunrisers
+        <p onClick={paraOnclick} style={{cursor:"pointer"}}>
+          {title}
         </p>
         <p>
-          <span>Cricket</span> 8 May,2023
+          <span style={{textTransform:"capitalize",color:"rgb(35, 175, 230)"}}>{category}</span> - {date}
         </p>
       </div>
       <div className="card-img">
-        <img src="https://www.hindustantimes.com/ht-img/img/2023/05/07/550x309/India-IPL-Cricket-122_1683482839350_1683482861266.jpg" alt="" />
+        <img src={image} alt="news captured" />
       </div>
     </div>
   );

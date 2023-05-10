@@ -1,12 +1,14 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useContext } from "react";
 import JoditEditor from "jodit-react";
 import "../assets/css/NewPost.css";
 import { useEffect } from "react";
+import { AdminContext } from "../context/adminContext";
 function NewPost() {
   const editor = useRef(null);
   const [errorMsg,setErrorMsg]=useState("");
   const [categoryNames, setCategoryNames] = useState([]);
   const [selectCategory, setSelectCategory] = useState("Select Category");
+  const{setTabName}=useContext(AdminContext);
   const [postData, setPostData] = useState({
     title: "",
     description: "",
@@ -41,11 +43,13 @@ function NewPost() {
           setErrorMsg(res.msg);
           setTimeout(() => {
             setErrorMsg("");
+            
           }, 10000);
         }else{
-          setErrorMsg(res.msg);
+          setErrorMsg(res.msg+" redirecting to home page....");
           setTimeout(() => {
               setErrorMsg("");
+		setTabName("Home");
           }, 10000);
         }
       })

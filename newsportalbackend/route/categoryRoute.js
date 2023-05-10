@@ -8,7 +8,7 @@ route.get('/all',getCategory);
 
 
 //get a gategory by id
-route.post('/get/:id',getCategoryById);
+route.get('/get/:id',getCategoryById);
 
 //save a gategory
 route.post('/savecategory',saveCategory);
