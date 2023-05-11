@@ -1,10 +1,13 @@
 import React from 'react'
 import '../assets/css/categorymenu.css';
+import { useNavigate } from 'react-router-dom';
+
 function CategoryMenu() {
+  const navigate=useNavigate();
   return (
     <div>
             <div className="menu-wraper">
-                <p>Home</p>
+                <p onClick={()=>{navigate("/")}}>Home</p>
                 <p>Latest News</p>
                 <p>Cricket</p>
                 <p>Education</p>
