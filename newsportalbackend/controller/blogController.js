@@ -1,4 +1,5 @@
 const Blog = require("../model/blogModel");
+const Category = require("../model/categorymodel");
 
 //add  data to blog Collection
 const addBlogPost = async (req, res) => {
@@ -22,7 +23,7 @@ const addBlogPost = async (req, res) => {
 
 //get all data from blog
 const getBlogPost = async (req, res) => {
-  const allPost = await Blog.find().sort({date:-1});
+  const allPost = await Blog.find().sort({ date: -1 });
   res.status(200).json({ status: 1, allPost });
 };
 
@@ -66,16 +67,16 @@ const getUserBlogPostById = async (req, res) => {
       date: date,
     };
     await Blog.findByIdAndUpdate({ _id: id }, postUpdated);
-    res.cookie("pageVisits", id,{
-        expires: new Date(Date.now()+ 1000 * 86400 * 1 ), // 1 day
-});
+    res.cookie("pageVisits", id, {
+      expires: new Date(Date.now() + 1000 * 86400 * 1), // 1 day
+    });
   } else {
     const toDayReadingNews = previousCookie.split(",").includes(id);
     if (!toDayReadingNews) {
       res.clearCookie("pageVisits");
       const newCookie = previousCookie + "," + id;
-      res.cookie("pageVisits", newCookie,{
-        expires: new Date(Date.now()+ 1000 * 86400 * 1 ), // 1 day
+      res.cookie("pageVisits", newCookie, {
+        expires: new Date(Date.now() + 1000 * 86400 * 1), // 1 day
       });
       let newView = view + 1;
       const postUpdated = {
@@ -117,36 +118,43 @@ const getBlogPostById = async (req, res) => {
 //get data by id from blog
 const getBlogPostByCategory = async (req, res) => {
   try {
-    const categoryid = req.params.categoryid;
-    const categoryPost = await Blog.find({ category: categoryid }).sort({date:1}).limit(3);
+    const categoryname = req.params.category;
+    const categoryid = await Category.findOne({ name: categoryname });
+    if (!categoryid) {
+      res.status(400).json({ status: 0, msg: "No such category found" });
+      console.log(error);
+    }
+    const categoryPost = await Blog.find({ category: categoryid._id })
+      .sort({ date: -1 })
+      .limit(3);
     if (categoryPost.length === 0) {
       res.status(400).json({ status: 0, msg: "No such category" });
       return;
     }
-    res.status(200).json({ status: 1, categoryPost });
+    res.status(200).json({ status: 1, allPost:categoryPost });
     return;
   } catch (error) {
-    res
-      .status(400)
-      .json({ status: 0, msg: "Server Error while searching category post" });
+    // res.status(400).json({ status: 0, msg: "No such category" });
     console.log(error);
   }
 };
 
-
 //update blogpost by id
-const updateBlogPost=async(req,res)=>{
-  const _id=req.params.id;
-  const findPost=await Blog.findById({_id});
-  if(!findPost){res.status(400).json({status:0,msg:"No post found"});return}
-  await Blog.findByIdAndUpdate({_id},req.body);
-  res.status(200).json({status:1,msg:"Post Updated"});
-}
+const updateBlogPost = async (req, res) => {
+  const _id = req.params.id;
+  const findPost = await Blog.findById({ _id });
+  if (!findPost) {
+    res.status(400).json({ status: 0, msg: "No post found" });
+    return;
+  }
+  await Blog.findByIdAndUpdate({ _id }, req.body);
+  res.status(200).json({ status: 1, msg: "Post Updated" });
+};
 module.exports = {
   addBlogPost,
   getBlogPost,
   getBlogPostById,
   getBlogPostByCategory,
   getUserBlogPostById,
-  updateBlogPost
+  updateBlogPost,
 };

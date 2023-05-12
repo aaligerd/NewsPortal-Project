@@ -13,7 +13,7 @@ function SinglePostPage() {
         setIsLoading(true);
         fetch("http://localhost:4040/blogpost/getpost/user/"+visibleNewsId)
         .then((res)=>res.json())
-        .then((res)=>{setBlog(res);setIsLoading(false);console.log(res)})
+        .then((res)=>{setBlog(res);setIsLoading(false);})
         .catch((err)=>{console.error(err)});
     },[]);
   return (

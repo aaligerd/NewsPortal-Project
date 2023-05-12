@@ -5,10 +5,10 @@ import { AppContext } from "../context/AppContext";
 import { useNavigate } from "react-router-dom";
 
 export default function NewsCardSmall({title,date,image,categoryid,id}) {
-  const{setVisibleNewsId}=useContext(AppContext);
+  const{setVisibleNewsId,setCurrentPage}=useContext(AppContext);
   const navigate=useNavigate();
 
-  const paraOnclick=()=>{setVisibleNewsId(id);navigate("/post")}
+  const paraOnclick=()=>{setVisibleNewsId(id);setCurrentPage(2);navigate("/post")}
 
 
   
@@ -28,7 +28,8 @@ export default function NewsCardSmall({title,date,image,categoryid,id}) {
           {title}
         </p>
         <p>
-          <span style={{textTransform:"capitalize",color:"rgb(35, 175, 230)"}}>{category}</span> - {date}
+          {/* <span style={{textTransform:"capitalize",color:"rgb(35, 175, 230)"}}>{category}</span> -  */}
+          {date}
         </p>
       </div>
       <div className="card-img">
