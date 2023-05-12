@@ -20,7 +20,7 @@ function PostSnipets(props) {
   
   //fetch the category of that post coming from porps
   useEffect(()=>{
-    fetch('http://localhost:4040/category/get/'+categoryId,{method:"GET"})
+    fetch('http://localhost:4040/category/get/'+categoryId,{method:"POST"})
     .then((res)=>res.json())
     .then((res)=>setCategoryName(res.category.name))
     .catch((err)=>{console.log(err)})

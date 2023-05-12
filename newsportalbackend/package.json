@@ -18,7 +18,6 @@
     "ip": "^2.0.0",
     "jsonwebtoken": "^9.0.0",
     "mongoose": "^7.0.3",
-    "node-schedule": "^2.1.1",
     "nodemon": "^2.0.22",
     "public-ip": "^6.0.1"
   }
