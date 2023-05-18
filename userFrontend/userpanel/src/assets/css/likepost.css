@@ -15,4 +15,9 @@
 .like-card-title{
     text-align: center;
     font-size: 20px;
+    cursor: pointer;
+}
+.like-card-title p:hover{
+    text-decoration: underline;
+    
 }

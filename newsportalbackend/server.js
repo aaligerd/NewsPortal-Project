@@ -3,7 +3,8 @@ const dotenv = require("dotenv").config();
 const mongoose = require("mongoose");
 const cookieParser = require("cookie-parser");
 const cors=require('cors');
-
+const scheduler=require('node-schedule');
+const {setDailyCronJob}=require('./controller/dailyStatController');
 
 //create an express application
 const app = express();
@@ -20,6 +21,10 @@ mongoose
   .then(() => {
     const PORT = process.env.PORT || 3030;
 
+    scheduler.scheduleJob("setDailyStats",'*/5 * * * * *',()=>{
+      setDailyCronJob();
+    })
+
     //routes
     //localhost:4040/subscription
     app.use("/subscription", require("./route/subscriptionRoute"));
@@ -35,6 +40,12 @@ mongoose
 
     // localhost:4040/user
     app.use("/user",require("./route/userRoute"));
+
+    //for daily usefull stats
+    app.use('/stats',require("./route/dailyStateRoute"));
+
+
+    // app.use('/dailyhit',require('./route/dailyhitRoute'));
 
     app.listen(PORT, () => {
       console.log("Database Connected\nServer running on port: " + PORT);
