@@ -118,20 +118,15 @@ const getBlogPostById = async (req, res) => {
 //get data by id from blog
 const getBlogPostByCategory = async (req, res) => {
   try {
-    const categoryname = req.params.category;
-    const categoryid = await Category.findOne({ name: categoryname });
-    if (!categoryid) {
-      res.status(400).json({ status: 0, msg: "No such category found" });
-      console.log(error);
-    }
-    const categoryPost = await Blog.find({ category: categoryid._id })
+    const categoryid = req.params.categoryid;
+    const categoryPost = await Blog.find({ category: categoryid })
       .sort({ date: -1 })
       .limit(3);
     if (categoryPost.length === 0) {
       res.status(400).json({ status: 0, msg: "No such category" });
       return;
     }
-    res.status(200).json({ status: 1, allPost:categoryPost });
+    res.status(200).json({ status: 1, allPost: categoryPost });
     return;
   } catch (error) {
     // res.status(400).json({ status: 0, msg: "No such category" });
