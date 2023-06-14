@@ -5,8 +5,9 @@ function Post() {
   var requestOptions = {
     method: 'GET'
   };
+  const url=process.env.REACT_APP_SERVER_URL;
   useEffect(() => {
-    fetch("http://localhost:4040/blogpost/",requestOptions)
+    fetch(url+"blogpost/",requestOptions)
       .then((response) => response.json())
       .then((result) => {setData(result)})
       .catch((error) => console.log("error", error));

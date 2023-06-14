@@ -8,6 +8,7 @@ function Homepage() {
     const [adminCredential, setAdminCredential] = useState({loginid:"",password:""});//for admin credential data
     const  {setLoggedIn}=useContext(AppContext);
     const {getAdminData}=useContext(AdminContext);
+    const url=process.env.REACT_APP_SERVER_URL;
     //admin login method
     const adminLogin=()=>{
         var myHeaders = new Headers();
@@ -17,7 +18,7 @@ function Homepage() {
             headers: myHeaders,
             body:JSON.stringify(adminCredential)
         }  
-        fetch('http://localhost:4040/admin/login',reqOption)
+        fetch(url+'admin/login',reqOption)
         .then((res)=>res.json())
         .then((res)=>{res.status===1?setAdminDataGlobalize(res):setErrorOnPage(res.msg)})
         .catch((err)=>{console.log(err)})

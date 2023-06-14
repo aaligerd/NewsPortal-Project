@@ -26,7 +26,7 @@ function NewPost() {
     buttons:
       "bold,italic,underline,ul,ol,font,fontsize,paragraph,image,cut,copy,paste,hr,table,link,indent,outdent,left,source",
   };
-
+  const url=process.env.REACT_APP_SERVER_URL;
   const publishPostData = () => {
     const header = new Headers();
     header.append("Content-Type", "application/json");
@@ -36,7 +36,7 @@ function NewPost() {
       body: JSON.stringify(postData),
     };
     console.log(postData);
-    fetch("http://localhost:4040/blogpost/savepost", reqOption)
+    fetch(url+"blogpost/savepost", reqOption)
       .then((res) => res.json())
       .then((res) => {
         if(res.status===0){
@@ -58,7 +58,7 @@ function NewPost() {
 
   //fetching all category names from database and stored in categoryNames
   useEffect(() => {
-    fetch("http://localhost:4040/category/all")
+    fetch(url+"category/all")
       .then((res) => res.json())
       .then((res) => setCategoryNames(res.allCategory))
       .catch((err) => console.error(err));

@@ -13,10 +13,10 @@ function NewsEditFields(props) {
   const editor = useRef(null);
 
   const {setTabName}=useContext(AdminContext)
-
+  const url=process.env.REACT_APP_SERVER_URL;
   useEffect(()=>{
     //fetching all category list
-    fetch("http://localhost:4040/category/all")
+    fetch(url+"category/all")
     .then((res) => res.json())
     .then((res) => setCategoryNames(res.allCategory))
     .catch((err) => console.error(err));
@@ -31,7 +31,7 @@ function NewsEditFields(props) {
       body: JSON.stringify(updatedPost),
     };
   const updatePost=()=>{
-    fetch("http://localhost:4040/blogpost/update/"+id,reqOption)
+    fetch(url+"blogpost/update/"+id,reqOption)
     .then((res) => res.json())
     .then((res) => {setErrormsg(res.msg);setTimeout(() => {
       setTabName("Posts");

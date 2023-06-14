@@ -6,10 +6,11 @@ import { AppContext } from '../context/appContext';
 function LeftPanel() {
   const { adminData,setAdminData, setTabName } = useContext(AdminContext);
   const  {setLoggedIn}=useContext(AppContext);
+  const url=process.env.REACT_APP_SERVER_URL;
 
   //logout method
   const adminLogout=()=>{
-      fetch('http://localhost:4040/admin/logout')
+      fetch(url+'admin/logout')
       .then((res)=>res.json())
       .then((res)=>{
         if(res.status===1){

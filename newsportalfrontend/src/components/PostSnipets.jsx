@@ -17,10 +17,11 @@ function PostSnipets(props) {
     getEditableNewsId(post_id);
     setTabName("EditPost");
   }
-  
+  const url=process.env.REACT_APP_SERVER_URL;
+
   //fetch the category of that post coming from porps
   useEffect(()=>{
-    fetch('http://localhost:4040/category/get/'+categoryId,{method:"POST"})
+    fetch(url+'category/get/'+categoryId,{method:"POST"})
     .then((res)=>res.json())
     .then((res)=>setCategoryName(res.category.name))
     .catch((err)=>{console.log(err)})

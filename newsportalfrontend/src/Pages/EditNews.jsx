@@ -9,11 +9,12 @@ function EditNews() {
 
   const [isLoading, setIsLoading] = useState(true)
   const [editablePost, setEditablePost] = useState(null);
-
+  
+  const url=process.env.REACT_APP_SERVER_URL;
 
 
   useEffect(()=>{
-    fetch("http://localhost:4040/blogpost/getpost/"+editableNewsId)
+    fetch(url+"blogpost/getpost/"+editableNewsId)
       .then((response) => response.json())
       .then((result) => {setEditablePost(result.singlePost);setIsLoading(false)})
       .catch((error) => console.log("error", error));
